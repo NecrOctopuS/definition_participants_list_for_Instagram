@@ -4,9 +4,6 @@ import argparse
 import os
 from dotenv import load_dotenv
 
-load_dotenv()
-LOGIN = os.getenv('LOGIN_INSTAGRAM')
-PASSWORD = os.getenv('PASSWORD_INSTAGRAM')
 
 def createParser():
     parser = argparse.ArgumentParser()
@@ -24,6 +21,9 @@ def is_user_exist(username):
         return True
 
 if __name__ == "__main__":
+    load_dotenv()
+    LOGIN = os.getenv('LOGIN_INSTAGRAM')
+    PASSWORD = os.getenv('PASSWORD_INSTAGRAM')
     parser = createParser()
     bot = Bot()
     bot.login(username=LOGIN, password=PASSWORD)
