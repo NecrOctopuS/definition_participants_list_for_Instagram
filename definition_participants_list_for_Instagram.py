@@ -18,10 +18,7 @@ def get_user_from_comment(comment):
 
 
 def is_user_exist(username):
-    if bot.get_user_id_from_username(username) == None:
-        return False
-    else:
-        return True
+    return not (bot.get_user_id_from_username(username) is None)
 
 
 if __name__ == "__main__":
