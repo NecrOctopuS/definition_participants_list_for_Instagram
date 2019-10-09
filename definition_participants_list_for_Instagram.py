@@ -5,14 +5,17 @@ import os
 from dotenv import load_dotenv
 
 
-def createParser():
+def create_parser():
     parser = argparse.ArgumentParser()
-    parser.add_argument('post_link', help='Ваша ссылка на пост' )
+    parser.add_argument('post_link', help='Ваша ссылка на пост')
     parser.add_argument('post_username', help='Никнейм автора поста')
     return parser
 
+
+# regular expression was found on https://blog.jstassen.com/2016/03/code-regex-for-instagram-username-and-hashtags/
 def get_user_from_comment(comment):
     return re.findall(r'(?:@)([A-Za-z0-9_](?:(?:[A-Za-z0-9_]|(?:\.(?!\.))){0,28}(?:[A-Za-z0-9_]))?)', comment)
+
 
 def is_user_exist(username):
     if bot.get_user_id_from_username(username) == None:
@@ -20,11 +23,12 @@ def is_user_exist(username):
     else:
         return True
 
+
 if __name__ == "__main__":
     load_dotenv()
     LOGIN = os.getenv('LOGIN_INSTAGRAM')
     PASSWORD = os.getenv('PASSWORD_INSTAGRAM')
-    parser = createParser()
+    parser = create_parser()
     bot = Bot()
     bot.login(username=LOGIN, password=PASSWORD)
     post_link = parser.parse_args().post_link
@@ -47,7 +51,7 @@ if __name__ == "__main__":
     users_who_meet_conditions = []
     for user_id, username in users_with_real_friend:
         if str(user_id) in users_id_who_like_post and str(user_id) in user_followers:
-            users_who_meet_conditions.append((user_id,username))
+            users_who_meet_conditions.append((user_id, username))
 
     print('Список участников: ', )
     for user_id, username in set(users_who_meet_conditions):
