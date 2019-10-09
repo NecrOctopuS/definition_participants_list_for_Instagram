@@ -121,3 +121,14 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Instabot files
+blacklist.txt
+comments.txt
+followed.txt
+friends.txt
+skipped.txt
+unfollowed.txt
+whitelist.txt
+*.checkpoint
+*.json
