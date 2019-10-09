@@ -13,7 +13,7 @@ def create_parser():
 
 
 # regular expression was found on https://blog.jstassen.com/2016/03/code-regex-for-instagram-username-and-hashtags/
-def get_user_from_comment(comment):
+def get_users_from_comment(comment):
     return re.findall(r'(?:@)([A-Za-z0-9_](?:(?:[A-Za-z0-9_]|(?:\.(?!\.))){0,28}(?:[A-Za-z0-9_]))?)', comment)
 
 
@@ -34,7 +34,7 @@ if __name__ == "__main__":
     comments = bot.get_media_comments_all(post_id)
     users_with_real_friend = []
     for comment in comments:
-        usernames = get_user_from_comment(comment['text'])
+        usernames = get_users_from_comment(comment['text'])
         for username in usernames:
             if is_user_exist(username):
                 friend_not_fake = True
